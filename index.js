@@ -1,11 +1,24 @@
 let modalOpened = false;
 
 range.oninput = () => {
-  console.log(range.value);
-  console.log(modalOpened);
+  const windowSize = window.screen.availWidth;
+
   document.body.style.setProperty("--pos", range.value + "%");
 
-  if (modalOpened ? Number(range.value) >= 60 : Number(range.value) >= 96) {
+  const rangeValueConditionForSmallScreen =
+    windowSize < 400
+      ? Number(range.value) >= 20
+      : windowSize < 600
+      ? Number(range.value) >= 50
+      : Number(range.value) >= 70;
+
+  if (
+    modalOpened
+      ? windowSize < 900
+        ? rangeValueConditionForSmallScreen
+        : Number(range.value) >= 86
+      : Number(range.value) >= 96
+  ) {
     document.body.style.setProperty("--mos", range.value + "%");
   } else {
     document.body.style.setProperty("--mos", "0%");
@@ -14,7 +27,6 @@ range.oninput = () => {
 
 avatar.onclick = (event) => {
   event.preventDefault();
-  const modal = document.getElementById("modal");
 
   if (modal.style.display === "none" || modal.style.display === "") {
     modal.style.display = "flex";
@@ -24,17 +36,3 @@ avatar.onclick = (event) => {
     modalOpened = false;
   }
 };
-
-// document.addEventListener("click", function (event) {
-//   const modal = document.getElementById("modal");
-//   const button = document.getElementById("triggerButton");
-
-//   // Check if the click is outside the modal and button
-//   if (
-//     modal.style.display === "block" &&
-//     !modal.contains(event.target) &&
-//     event.target !== button
-//   ) {
-//     modal.style.display = "none";
-//   }
-// });
