@@ -8,6 +8,8 @@ body {
 }
 
 #avatar {
+  -webkit-tap-highlight-color: transparent;
+
   img {
     position: absolute;
     border: 2px solid white;
