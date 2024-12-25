@@ -28,6 +28,7 @@ body {
 #modal {
   position: absolute;
   display: none;
+  width: 13rem;
   background-color: #191d21;
   border: 1px solid #ccc;
   padding: 10px;
